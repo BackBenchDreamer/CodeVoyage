@@ -13,6 +13,6 @@ public class palindrome {
         
         if (num == rev) System.out.println("The entered number is a palindrome number");
         else System.out.println("The entered number is not a palindrome number");
-
+        sc.close();
     }
 }
