@@ -68,7 +68,7 @@
     document.getElementById('foodCategory').innerText = foodCategory;
     document.getElementById('temperature').innerText = temperature;
 
-    // Adding logic to determine the suggestion and storage status based on the data (you can modify this as needed)
+    // Adding logic to determine the suggestion and storage status based on the data 
     let suggestion = getOptimalTemperatureRange(foodCategory);
     document.getElementById('suggestion').innerText = suggestion;
 
@@ -81,7 +81,6 @@
     }
 
     function getOptimalTemperatureRange(category) {
-      // Add your logic to determine the optimal temperature range for each category
       // For simplicity, using static values here
       switch (category) {
         case 'Dry Foods':
@@ -119,8 +118,10 @@
       // Checking if the actual temperature is within the suggested range
       if (actualTemp >= minRange && actualTemp <= maxRange) {
         return 'Stored in optimal conditions';
+      } else if (actualTemp < minRange) {
+        return 'Stored in colder condition';
       } else {
-        return 'Not stored in optimal conditions';
+        return 'Stored in hotter condition';
       }
     }
   </script>
