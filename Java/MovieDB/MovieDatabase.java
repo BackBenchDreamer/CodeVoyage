@@ -1,0 +1,349 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ * Movie Database Program
+ * Authors: Jeyadheep V
+ * Date: 10/12/2023
+ * Features:
+ * 1. User registration with unique username and password constraints.
+ * 2. User login with email/username and password.
+ * 3. Manage Watched and Plan to Watch movies with details such as rating, completion date, and review.
+ * 4. Display Movie Database, including Plan to Watch and Watched movies.
+ * 5. Update Movie Database: move movies between PTW and Watched, remove completed movies, and more.
+ * 6. Log out and exit options.
+ */
+public class MovieDatabase {
+    private static Scanner scanner = new Scanner(System.in);
+    private static ArrayList<User> users = new ArrayList<>();
+    private static User currentUser;
+
+    public static void main(String[] args) {
+        while (true) {
+            System.out.println("\n----------------------------------------------------------\n");
+            System.out.println("Welcome to the Movie Database!");
+            System.out.println("1. Register\n2. Login\n3. Exit");
+            int choice = getUserChoice(3);
+
+            switch (choice) {
+                case 1:
+                    registerUser();
+                    break;
+                case 2:
+                    loginUser();
+                    break;
+                case 3:
+                    System.out.println("Exiting Movie Database. Goodbye!");
+                    System.exit(0);
+            }
+
+            while (currentUser != null) {
+                System.out.println("\n----------------------------------------------------------\n");
+                System.out.println("\nMovie Database Options:");
+                System.out.println("1. Enter a Watched Movie\n2. Enter a Plan to Watch Movie\n" +
+                        "3. Display Movie DB\n4. Update Movie DB\n5. Log out\n6. Exit");
+                choice = getUserChoice(6);
+
+                switch (choice) {
+                    case 1:
+                        enterWatchedMovie();
+                        break;
+                    case 2:
+                        enterPlanToWatchMovie();
+                        break;
+                    case 3:
+                        displayMovieDatabase();
+                        break;
+                    case 4:
+                        updateMovieDatabase();
+                        break;
+                    case 5:
+                        logOut();
+                        break;
+                    case 6:
+                        System.out.println("\n----------------------------------------------------------\n");
+                        System.out.println("Exiting Movie Database. Goodbye!");
+                        System.exit(0);
+                }
+            }
+        }
+    }
+
+    // User class to store user information.
+    static class User {
+        String email;
+        String username;
+        String password;
+        ArrayList<Movie> watchedMovies;
+        ArrayList<Movie> planToWatchMovies;
+
+        public User(String email, String username, String password) {
+            this.email = email;
+            this.username = username;
+            this.password = password;
+            this.watchedMovies = new ArrayList<>();
+            this.planToWatchMovies = new ArrayList<>();
+        }
+    }
+
+    // Movie class to store movie information.
+    static class Movie {
+        String name;
+        String status; // "PTW" or "Watched"
+        int rating;
+        String completionDate;
+        String review;
+
+        public Movie(String name, String status, int rating, String completionDate, String review) {
+            this.name = name;
+            this.status = status;
+            this.rating = rating;
+            this.completionDate = completionDate;
+            this.review = review;
+        }
+    }
+
+    // Utility method to get user input within a specified range.
+    private static int getUserChoice(int maxChoice) {
+        int choice = -1;
+        do {
+            System.out.print("Enter your choice: ");
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+        } while (choice < 1 || choice > maxChoice);
+
+        return choice;
+    }
+
+
+    private static void registerUser() {
+        System.out.println("\n----------------------------------------------------------\n");
+        System.out.println("Enter your email: ");
+        String email = scanner.nextLine();
+
+        System.out.println("Enter a username (must be unique): ");
+        String username;
+        while (true) {
+            username = scanner.nextLine();
+            if (isUsernameUnique(username)) {
+                break;
+            } else {
+                System.out.println("Username already taken. Enter a different username: ");
+            }
+        }
+
+        System.out.println("Enter a password (at least 8 characters, alphanumeric): ");
+        String password;
+        while (true) {
+            password = scanner.nextLine();
+            if (isPasswordValid(password)) {
+                break;
+            } else {
+                System.out.println("Invalid password. Password must be at least 8 characters and alphanumeric. Enter a valid password: ");
+            }
+        }
+
+        User newUser = new User(email, username, password);
+        users.add(newUser);
+        System.out.println("Registration successful!");
+    }
+
+    private static boolean isUsernameUnique(String username) {
+        for (User user : users) {
+            if (user.username.equals(username)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean isPasswordValid(String password) {
+        return password.length() >= 8 && password.matches(".*[a-zA-Z].*") && password.matches(".*\\d.*");
+    }
+
+    private static void loginUser() {
+        System.out.println("\n----------------------------------------------------------\n");
+        System.out.println("Enter your email or username: ");
+        String loginInput = scanner.nextLine();
+        System.out.println("Enter your password: ");
+        String password = scanner.nextLine();
+
+        for (User user : users) {
+            if ((user.email.equals(loginInput) || user.username.equals(loginInput)) && user.password.equals(password)) {
+                currentUser = user;
+                System.out.println("Login successful! Welcome, " + currentUser.username + "!");
+                return;
+            }
+        }
+
+        System.out.println("Invalid credentials. Login failed.");
+    }
+
+    private static void enterWatchedMovie() {
+        System.out.println("\n----------------------------------------------------------\n");
+        System.out.println("Enter the name of the watched movie: ");
+        String name = scanner.nextLine();
+
+        System.out.println("Enter the rating (on a scale of 1-10): ");
+        int rating = getUserChoice(10);
+
+        System.out.println("Enter the completion date (DD/MM/YYYY): ");
+        String completionDate = scanner.nextLine();
+
+        System.out.println("Enter a small review on the movie: ");
+        String review = scanner.nextLine();
+
+        Movie watchedMovie = new Movie(name, "Watched", rating, completionDate, review);
+        currentUser.watchedMovies.add(watchedMovie);
+        System.out.println("Movie added to Watched list!");
+    }
+
+    private static void enterPlanToWatchMovie() {
+        System.out.println("\n----------------------------------------------------------\n");
+        System.out.println("Enter the name of the movie you plan to watch: ");
+        String name = scanner.nextLine();
+
+        Movie planToWatchMovie = new Movie(name, "PTW", 0, "", "");
+        currentUser.planToWatchMovies.add(planToWatchMovie);
+        System.out.println("Movie added to Plan to Watch list!");
+    }
+
+    private static void displayMovieDatabase() {
+        System.out.println("\n----------------------------------------------------------\n");
+        System.out.println("\nMovie Database:");
+
+        System.out.println("Plan to Watch Movies:");
+        displayMovies(currentUser.planToWatchMovies);
+
+        System.out.println("\nWatched Movies:");
+        displayMovies(currentUser.watchedMovies);
+    }
+
+    private static void displayMovies(ArrayList<Movie> movies) {
+        if (movies.isEmpty()) {
+            System.out.println("\n----------------------------------------------------------\n");
+            System.out.println("No movies to display.");
+            return;
+        }
+
+        for (Movie movie : movies) {
+            System.out.println("Name: " + movie.name);
+            System.out.println("Status: " + movie.status);
+            if (movie.status.equals("Watched")) {
+                System.out.println("Rating: " + movie.rating);
+                System.out.println("Completion Date: " + movie.completionDate);
+                System.out.println("Review: " + movie.review);
+            }
+            System.out.println("-------------------------");
+        }
+    }
+
+    private static void updateMovieDatabase() {
+        System.out.println("\n----------------------------------------------------------\n");
+        System.out.println("Update Movie Database Options:");
+        System.out.println("1. Move movie from Plan to Watch to Watched\n2. Remove completed movies\n3. Back");
+        int choice = getUserChoice(3);
+
+        switch (choice) {
+            case 1:
+                moveMovieToWatched();
+                break;
+            case 2:
+                removeCompletedMovies();
+                break;
+            case 3:
+                return;
+        }
+    }
+
+    private static void moveMovieToWatched() {
+        System.out.println("\n----------------------------------------------------------\n");
+        ArrayList<Movie> planToWatchMovies = currentUser.planToWatchMovies;
+    
+        if (planToWatchMovies.isEmpty()) {
+            System.out.println("No Plan to Watch movies available.");
+            return;
+        }
+    
+        System.out.println("Plan to Watch Movies:");
+    
+        for (int i = 0; i < planToWatchMovies.size(); i++) {
+            Movie movie = planToWatchMovies.get(i);
+            System.out.println((i + 1) + ". " + movie.name);
+        }
+    
+        int choice;
+        do {
+            System.out.println("Enter the number of the movie to move to Watched (1-" + planToWatchMovies.size() + "): ");
+            choice = getUserChoice(planToWatchMovies.size());
+    
+            if (choice < 1 || choice > planToWatchMovies.size()) {
+                System.out.println("Invalid choice. Please enter a number between 1 and " + planToWatchMovies.size() + ".");
+            }
+    
+        } while (choice < 1 || choice > planToWatchMovies.size());
+    
+        Movie selectedMovie = planToWatchMovies.get(choice - 1);
+    
+        System.out.println("Enter the rating for the watched movie (on a scale of 1-10): ");
+        int rating = getUserChoice(10);
+    
+        System.out.println("Enter the completion date for the watched movie (DD/MM/YYYY): ");
+        String completionDate = scanner.nextLine();
+    
+        System.out.println("Enter a small review for the watched movie: ");
+        String review = scanner.nextLine();
+    
+        // Move the movie from Plan to Watch to Watched
+        planToWatchMovies.remove(selectedMovie);
+        Movie watchedMovie = new Movie(selectedMovie.name, "Watched", rating, completionDate, review);
+        currentUser.watchedMovies.add(watchedMovie);
+        System.out.println("Movie moved to Watched list!");
+    }
+
+    private static void removeCompletedMovies() {
+        System.out.println("\n----------------------------------------------------------\n");
+        ArrayList<Movie> completedMovies = new ArrayList<>();
+        for (Movie movie : currentUser.watchedMovies) {
+            if (!movie.completionDate.isEmpty()) {
+                completedMovies.add(movie);
+            }
+        }
+    
+        if (completedMovies.isEmpty()) {
+            System.out.println("No completed movies to remove.");
+            return;
+        }
+    
+        System.out.println("Completed Movies:");
+    
+        for (int i = 0; i < completedMovies.size(); i++) {
+            Movie movie = completedMovies.get(i);
+            System.out.println((i + 1) + ". " + movie.name + " (" + movie.status + ")");
+        }
+    
+        int choice;
+        do {
+            System.out.println("Enter the number of the movie to remove (1-" + completedMovies.size() + "): ");
+            choice = getUserChoice(completedMovies.size());
+    
+            if (choice < 1 || choice > completedMovies.size()) {
+                System.out.println("Invalid choice. Please enter a number between 1 and " + completedMovies.size() + ".");
+            }
+    
+        } while (choice < 1 || choice > completedMovies.size());
+    
+        Movie selectedMovie = completedMovies.get(choice - 1);
+        currentUser.watchedMovies.remove(selectedMovie);
+        System.out.println("Movie removed from Watched list!");
+    }
+
+    private static void logOut() {
+        currentUser = null;
+        System.out.println("\n----------------------------------------------------------\n");
+        System.out.println("Logged out successfully. Goodbye, and see you next time!");
+    }
+}
