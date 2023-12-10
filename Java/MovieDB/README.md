@@ -18,6 +18,3 @@ Welcome to the Movie Database project! This Java program allows users to manage 
 
    ```bash
    git clone https://github.com/BackBenchDreamer/LearninLanguages/tree/main/Java/MovieD.git
-cd MovieDB
-javac MovieDatabase.java
-java MovieDatabase
