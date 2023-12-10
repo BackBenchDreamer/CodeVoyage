@@ -1,5 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.*;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 
 /**
  * Movie Database Program
@@ -18,7 +25,20 @@ public class MovieDatabase {
     private static ArrayList<User> users = new ArrayList<>();
     private static User currentUser;
 
+    // File paths
+    private static final String USER_DB_FILE_PATH = "user_db.csv";
+    private static final String MOVIE_DB_FILE_PATH = "movie_db.csv";
+
+    // Encryption key for user_db.csv
+    private static Key encryptionKey;
+
     public static void main(String[] args) {
+        // Load encryption key
+        loadEncryptionKey();
+
+        // Load user data from encrypted file
+        loadUserData();
+
         while (true) {
             System.out.println("\n----------------------------------------------------------\n");
             System.out.println("Welcome to the Movie Database!");
@@ -33,6 +53,8 @@ public class MovieDatabase {
                     loginUser();
                     break;
                 case 3:
+                    // Save user data and exit
+                    saveUserData();
                     System.out.println("Exiting Movie Database. Goodbye!");
                     System.exit(0);
             }
@@ -58,9 +80,13 @@ public class MovieDatabase {
                         updateMovieDatabase();
                         break;
                     case 5:
+                        // Save user data and log out
+                        saveUserData();
                         logOut();
                         break;
                     case 6:
+                        // Save user data and exit
+                        saveUserData();
                         System.out.println("\n----------------------------------------------------------\n");
                         System.out.println("Exiting Movie Database. Goodbye!");
                         System.exit(0);
@@ -346,4 +372,75 @@ public class MovieDatabase {
         System.out.println("\n----------------------------------------------------------\n");
         System.out.println("Logged out successfully. Goodbye, and see you next time!");
     }
+
+    private static void loadUserData() {
+        try (BufferedReader br = new BufferedReader(new FileReader(USER_DB_FILE_PATH))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                String email = parts[1];
+                String username = parts[2];
+                String encryptedPassword = parts[3];
+
+                // Decrypt password
+                String password = decryptPassword(encryptedPassword);
+
+                User loadedUser = new User(email, username, password);
+                users.add(loadedUser);
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading user data: " + e.getMessage());
+        }
+    }
+
+    private static void saveUserData() {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(USER_DB_FILE_PATH))) {
+            writer.println("sr.no,email_id,username,password");
+
+            for (int i = 0; i < users.size(); i++) {
+                User user = users.get(i);
+                String encryptedPassword = encryptPassword(user.password);
+
+                writer.println((i + 1) + "," + user.email + "," + user.username + "," + encryptedPassword);
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving user data: " + e.getMessage());
+        }
+    }
+
+    private static void loadEncryptionKey() {
+        try {
+            KeyGenerator keyGen = KeyGenerator.getInstance("Blowfish");
+            encryptionKey = keyGen.generateKey();
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("Error generating encryption key: " + e.getMessage());
+        }
+    }
+
+    private static String encryptPassword(String password) {
+        try {
+            Cipher cipher = Cipher.getInstance("Blowfish");
+            cipher.init(Cipher.ENCRYPT_MODE, encryptionKey);
+
+            byte[] encryptedBytes = cipher.doFinal(password.getBytes());
+            return new String(encryptedBytes);
+        } catch (Exception e) {
+            System.out.println("Error encrypting password: " + e.getMessage());
+            return password; // Return the original password in case of an error
+        }
+    }
+
+    private static String decryptPassword(String encryptedPassword) {
+        try {
+            Cipher cipher = Cipher.getInstance("Blowfish");
+            cipher.init(Cipher.DECRYPT_MODE, encryptionKey);
+
+            byte[] decryptedBytes = cipher.doFinal(encryptedPassword.getBytes());
+            return new String(decryptedBytes);
+        } catch (Exception e) {
+            System.out.println("Error decrypting password: " + e.getMessage());
+            return encryptedPassword; // Return the original encrypted password in case of an error
+        }
+    }
 }
+
