@@ -1,5 +1,3 @@
-CodeVoyage Repository README
-
 Welcome to CodeVoyage! This repository is dedicated to my journey of learning and experimenting with various programming languages and technologies. Here, I test out different concepts, build small projects, and document my progress as I delve into the world of coding.
 Purpose
 
