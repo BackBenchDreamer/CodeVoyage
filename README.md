@@ -1,8 +1,10 @@
+# CodeVoyage Repository README
+
 Welcome to CodeVoyage! This repository is dedicated to my journey of learning and experimenting with various programming languages and technologies. Here, I test out different concepts, build small projects, and document my progress as I delve into the world of coding.
-Purpose
+## Purpose
 
 The main purpose of this repository is to serve as a learning hub where I can practice and improve my skills in multiple programming languages and frameworks. It is a place for experimentation, exploration, and growth.
-Languages and Technologies
+## Languages and Technologies
 
 In this repository, you will find code written in the following languages and technologies:
 
@@ -17,7 +19,7 @@ In this repository, you will find code written in the following languages and te
     MongoDB
     React.js
 
-Structure
+## Structure
 
 The repository is organized by language and technology, with each folder containing relevant projects and practice files. Below is a brief overview of the structure:
 
@@ -42,13 +44,13 @@ The repository is organized by language and technology, with each folder contain
     Reactjs/
         Projects and exercises using React.js
 
-Projects
+## Projects
 
 Each folder may contain various projects, ranging from simple exercises to more complex applications. These projects help reinforce my understanding and application of the language or technology.
-Contributions
+## Contributions
 
 While this repository primarily serves my learning purposes, I welcome any suggestions or contributions. If you have ideas or improvements, feel free to open an issue or submit a pull request.
-Contact
+## Contact
 
 If you have any questions or want to connect, you can reach me at jeyadheepv@gmail.com
 
