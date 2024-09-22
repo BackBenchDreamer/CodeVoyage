@@ -3,44 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sample Webpage</title>
+    <title>Jeyadheep's Portfolio</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1rem;
             text-align: center;
         }
-        main {
-            padding: 2rem;
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
         }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem;
-            position: fixed;
+        h2 {
+            font-size: 24px;
+            font-weight: normal;
+        }
+        img {
+            border-radius: 50%;
+            margin: 20px 0;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        form {
+            display: inline-block;
+            text-align: left;
+        }
+        form input, form textarea {
+            display: block;
             width: 100%;
-            bottom: 0;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        form input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+
     <header>
-        <h1>Welcome to CodeVoyage</h1>
+        <h1>Jeyadheep</h1>
+        <h2>Student | CSE-AIML | B.Tech | DSU</h2>
+        <img src="/Assets/Self/JJPFP.png" alt="Profile Picture" width="200" height="200">
     </header>
-    <main>
-        <h2>About Us</h2>
-        <p>This is a sample webpage created for testing purposes.</p>
-    </main>
-    <footer>
-        <p>&copy; 2023 CodeVoyage. All rights reserved.</p>
-    </footer>
+
+    <section>
+        <h2>About Me</h2>
+        <p>
+            Passionate about the intersection of Artificial Intelligence and Machine Learning, I am a pre-final year B.Tech student with a strong foundation in both theoretical knowledge and hands-on experience. I strive for innovation and creativity in everything I pursue, whether in technology or art. My enthusiasm for exploring new horizons in space, AI, and the realm of algorithmic artistry is reflected in my projects, where I merge my technical acumen with a creative mindset.
+        </p>
+    </section>
+
+    <section>
+        <h2>My Projects</h2>
+    
+        <div>
+            <h3>AI Safari Sentinel</h3>
+            <img src="/Assets/Projects/SafariSentinel.png" alt="AI Safari Sentinel" width="200" height="200">
+            <p>
+                AI Safari Sentinel is a YOLOv8-powered AI that swiftly recognizes and classifies animals in videos, marking them with names, bounding boxes, and crucial conservation status. This project achieves high accuracy (98%) and features real-time recognition, making it a game-changer in wildlife monitoring and protection.
+            </p>
+        </div>
+    
+        <div>
+            <h3>GameDevWeek</h3>
+            <img src="/Assets/Projects/GameDevWeek.png" alt="GameDevWeek" width="200" height="200">
+            <p>
+                GameDevWeek is an exciting project where I created one game each day for a week using Python. The lineup includes classics like Snake, Flappy Bird, and Tic Tac Toe, showcasing my ability to design engaging gameplay mechanics and implement them efficiently within tight deadlines.
+            </p>
+        </div>
+    
+        <div>
+            <h3>Personal Portfolio Website</h3>
+            <img src="/Assets/Projects/PersonalPortfolio.png" alt="Personal Portfolio" width="200" height="200">
+            <p>
+                This Personal Portfolio Website serves as a showcase for my projects, skills, and experiences. Built with a focus on simplicity and professionalism, it highlights my journey as a B.Tech student in AI and Machine Learning, while providing an easy way for potential collaborators to reach out.
+            </p>
+        </div>
+    
+        <div>
+            <h3>CodeVoyage</h3>
+            <img src="/Assets/Projects/CodeVoyage.png" alt="CodeVoyage" width="200" height="200">
+            <p>
+                CodeVoyage is my personal repository for exploring various programming languages and frameworks. It contains diverse projects that demonstrate my coding skills and my passion for learning new technologies. Each project reflects my journey as I explore the world of programming.
+            </p>
+        </div>
+    </section>
+    
+
+    <section>
+        <h2>Skills</h2>
+        <ul>
+            <li>Programming Languages: Python, JavaScript, C++</li>
+            <li>Tech Stacks: MERN, Django, Langchain</li>
+            <li>Artistry: Graphite Portrait Drawing, Oil Painting, Nature Sketching, Architectural Sketching</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Contact Me</h2>
+        <p>Feel free to reach out for collaboration or inquiries:</p>
+        <p>Email: <a href="mailto:jey.vonmen@gmail.com">jey.vonmen@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://linkedin.com/in/jeyv" target="_blank">jeyv</a></p>
+        <p>GitHub: <a href="https://github.com/backbenchdreamer" target="_blank">backbenchdreamer</a></p>
+    </section>
+
+    <section>
+        <h2>Contact Form</h2>
+        <form action="mailto:jey.vonmen@gmail.com" method="post" enctype="text/plain">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <input type="submit" value="Send">
+        </form>
+    </section>
+
 </body>
 </html>
