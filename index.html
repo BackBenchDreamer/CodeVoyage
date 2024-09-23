@@ -4,158 +4,183 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jey's Hobbit Hole</title>
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/Assets/Favicon/Cat/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/Assets/Favicon/Cat/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/Assets/Favicon/Cat/favicon-16x16.png"
-    />
-    <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="style.css" />
-    <!-- Linked external CSS -->
   </head>
   <body>
+    <!-- Header with Navigation Bar -->
     <header>
-      <h1>Jeyadheep</h1>
-      <h2>Student | CSE-AIML | B.Tech | DSU</h2>
-      <img
-        src="/Assets/Self/JJPFP.png"
-        alt="Profile Picture"
-        width="200"
-        height="200"
-      />
+      <nav>
+        <ul>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact Me</a></li>
+        </ul>
+      </nav>
     </header>
 
-    <section>
-      <h2>About Me</h2>
-      <p>
-        Passionate about the intersection of Artificial Intelligence and Machine
-        Learning, I am a pre-final year B.Tech student with a strong foundation
-        in both theoretical knowledge and hands-on experience. I strive for
-        innovation and creativity in everything I pursue, whether in technology
-        or art. My enthusiasm for exploring new horizons in space, AI, and the
-        realm of algorithmic artistry is reflected in my projects, where I merge
-        my technical acumen with a creative mindset.
-      </p>
+    <!-- Profile Section -->
+    <section id="profile">
+      <div class="container">
+        <h1>Jeyadheep Velayutham</h1>
+        <h2>Student | CSE-AIML | B.Tech | DSU</h2>
+        <img src="/Assets/Self/JJPFP.png" alt="Profile Picture" />
+      </div>
     </section>
 
-    <section>
-      <h2>My Projects</h2>
-
-      <div>
-        <h3>AI Safari Sentinel</h3>
-        <img
-          src="/Assets/Projects/SafariSentinel.png"
-          alt="AI Safari Sentinel"
-        />
+    <!-- About Me Section -->
+    <section id="about">
+      <div class="container">
+        <h2>About Me</h2>
         <p>
-          AI Safari Sentinel is a YOLOv8-powered AI that swiftly recognizes and
-          classifies animals in videos, marking them with names, bounding boxes,
-          and crucial conservation status. This project achieves high accuracy
-          (98%) and features real-time recognition, making it a game-changer in
-          wildlife monitoring and protection.
-        </p>
-      </div>
-
-      <div>
-        <h3>GameDevWeek</h3>
-        <img src="/Assets/Projects/GameDevWeek.png" alt="GameDevWeek" />
-        <p>
-          GameDevWeek is an exciting project where I created one game each day
-          for a week using Python. The lineup includes classics like Snake,
-          Flappy Bird, and Tic Tac Toe, showcasing my ability to design engaging
-          gameplay mechanics and implement them efficiently within tight
-          deadlines.
-        </p>
-      </div>
-
-      <div>
-        <h3>Personal Portfolio Website</h3>
-        <img
-          src="/Assets/Projects/PersonalPortfolio.png"
-          alt="Personal Portfolio"
-        />
-        <p>
-          This Personal Portfolio Website serves as a showcase for my projects,
-          skills, and experiences. Built with a focus on simplicity and
-          professionalism, it highlights my journey as a B.Tech student in AI
-          and Machine Learning, while providing an easy way for potential
-          collaborators to reach out.
-        </p>
-      </div>
-
-      <div>
-        <h3>CodeVoyage</h3>
-        <img src="/Assets/Projects/CodeVoyage.png" alt="CodeVoyage" />
-        <p>
-          CodeVoyage is my personal repository for exploring various programming
-          languages and frameworks. It contains diverse projects that
-          demonstrate my coding skills and my passion for learning new
-          technologies. Each project reflects my journey as I explore the world
-          of programming.
+          Passionate about the intersection of Artificial Intelligence and
+          Machine Learning, I am a pre-final year B.Tech student with a strong
+          foundation in both theoretical knowledge and hands-on experience. I
+          strive for innovation and creativity in everything I pursue, whether
+          in technology or art. My enthusiasm for exploring new horizons in
+          space, AI, and the realm of algorithmic artistry is reflected in my
+          projects, where I merge my technical acumen with a creative mindset.
         </p>
       </div>
     </section>
 
-    <section>
-      <h2>Skills</h2>
-      <ul class="skills-list">
-        <li>Programming Languages: Python, JavaScript, C++</li>
-        <li>Tech Stacks: MERN, Django, Langchain</li>
-        <li>
-          Artistry: Graphite Portrait Drawing, Oil Painting, Nature Sketching,
-          Architectural Sketching
-        </li>
-      </ul>
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="container">
+        <h2>My Projects</h2>
+        <div class="slider">
+          <div class="slides">
+            <!-- AI Safari Sentinel Project -->
+            <div class="slide">
+              <img
+                src="/Assets/Projects/SafariSentinel.png"
+                alt="AI Safari Sentinel"
+              />
+              <div class="slide-content">
+                <h3>AI Safari Sentinel</h3>
+                <p>
+                  AI Safari Sentinel is a YOLOv8-powered AI that swiftly
+                  recognizes and classifies animals in videos, marking them with
+                  names, bounding boxes, and crucial conservation status. This
+                  project achieves high accuracy (98%) and features real-time
+                  recognition, making it a game-changer in wildlife monitoring
+                  and protection.
+                </p>
+              </div>
+            </div>
+
+            <!-- GameDevWeek Project -->
+            <div class="slide">
+              <img src="/Assets/Projects/GameDevWeek.png" alt="GameDevWeek" />
+              <div class="slide-content">
+                <h3>GameDevWeek</h3>
+                <p>
+                  GameDevWeek is an exciting project where I created one game
+                  each day for a week using Python. The lineup includes classics
+                  like Snake, Flappy Bird, and Tic Tac Toe, showcasing my
+                  ability to design engaging gameplay mechanics and implement
+                  them efficiently within tight deadlines.
+                </p>
+              </div>
+            </div>
+
+            <!-- Personal Portfolio Website Project -->
+            <div class="slide">
+              <img
+                src="/Assets/Projects/PersonalPortfolio.png"
+                alt="Personal Portfolio"
+              />
+              <div class="slide-content">
+                <h3>Personal Portfolio Website</h3>
+                <p>
+                  This Personal Portfolio Website serves as a showcase for my
+                  projects, skills, and experiences. Built with a focus on
+                  simplicity and professionalism, it highlights my journey as a
+                  B.Tech student in AI and Machine Learning, while providing an
+                  easy way for potential collaborators to reach out.
+                </p>
+              </div>
+            </div>
+
+            <!-- CodeVoyage Project -->
+            <div class="slide">
+              <img src="/Assets/Projects/CodeVoyage.png" alt="CodeVoyage" />
+              <div class="slide-content">
+                <h3>CodeVoyage</h3>
+                <p>
+                  CodeVoyage is my personal repository for exploring various
+                  programming languages and frameworks. It contains diverse
+                  projects that demonstrate my coding skills and my passion for
+                  learning new technologies. Each project reflects my journey as
+                  I explore the world of programming.
+                </p>
+              </div>
+            </div>
+          </div>
+          <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+          <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Contact Me</h2>
-      <p>Feel free to reach out for collaboration or inquiries:</p>
-      <p>
-        Email: <a href="mailto:jey.vonmen@gmail.com">jey.vonmen@gmail.com</a>
-      </p>
-      <p>
-        LinkedIn:
-        <a href="https://linkedin.com/in/jeyv" target="_blank">jeyv</a>
-      </p>
-      <p>
-        GitHub:
-        <a href="https://github.com/backbenchdreamer" target="_blank"
-          >backbenchdreamer</a
+    <!-- Skills Section -->
+    <section id="skills">
+      <div class="container">
+        <h2>Skills</h2>
+        <ul>
+          <li>Programming Languages: Python, JavaScript, C++</li>
+          <li>Tech Stacks: MERN, Django, Langchain</li>
+          <li>
+            Artistry: Graphite Portrait Drawing, Oil Painting, Nature Sketching,
+            Architectural Sketching
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contact Me Section -->
+    <section id="contact">
+      <div class="container">
+        <h2>Contact Me</h2>
+        <p>Feel free to reach out for collaboration or inquiries:</p>
+        <p>
+          Email: <a href="mailto:jey.vonmen@gmail.com">jey.vonmen@gmail.com</a>
+        </p>
+        <p>
+          LinkedIn:
+          <a href="https://linkedin.com/in/jeyv" target="_blank">jeyv</a>
+        </p>
+        <p>
+          GitHub:
+          <a href="https://github.com/backbenchdreamer" target="_blank"
+            >backbenchdreamer</a
+          >
+        </p>
+
+        <!-- Contact Form (CTA) -->
+        <h3>Get in Touch</h3>
+        <form
+          action="mailto:jey.vonmen@gmail.com"
+          method="post"
+          enctype="text/plain"
         >
-      </p>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+          <input type="submit" value="Send" />
+        </form>
+      </div>
     </section>
 
-    <section>
-      <h2>Contact Form</h2>
-      <form
-        action="mailto:jey.vonmen@gmail.com"
-        method="post"
-        enctype="text/plain"
-      >
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required />
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2023 Jey's Hobbit Hole</p>
+    </footer>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
-
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="4" required></textarea>
-
-        <input type="submit" value="Send" />
-      </form>
-    </section>
+    <script src="script.js"></script>
   </body>
 </html>
