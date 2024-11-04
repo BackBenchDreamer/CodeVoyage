@@ -1,0 +1,14 @@
+/* Change the background color of the entire page */
+body {
+    background-color: #f0f8ff; /* AliceBlue */
+}
+
+/* Change the color of all h1 elements */
+h1 {
+    color: #ff4500; /* OrangeRed */
+}
+
+/* Change the color of all paragraph elements */
+p {
+    color: #2e8b57; /* SeaGreen */
+}

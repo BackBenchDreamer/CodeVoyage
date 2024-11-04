@@ -92,11 +92,16 @@
 
     <h2>Select Dropdown</h2>
     <form>
-        <label for="select">Select an option:</label>
+        <label for="select">Example <br> Select your blood Group:</label>
+        <select id="select" name="select" aria-placeholder="Blood Type">
+            <option value="option1">A</option>
+            <option value="option2">B</option>
+            <option value="option3">AB</option>
+            <option value="option3">O</option>
+        </select>
         <select id="select" name="select">
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
+            <option value="option1">+ve</option>
+            <option value="option2">-ve</option>
         </select><br><br>
     </form>
 
@@ -104,6 +109,11 @@
     <form>
         <label for="file">File:</label>
         <input type="file" id="file" name="file"><br><br>
+    </form>
+    <h2>Image Input</h2>
+    <form>
+        <label for="ImageFile">Image File:</label>
+        <input type="image" id="ImageFile" name="ImageFile"><br><br>
     </form>
 
     <h2>Description Form</h2>
